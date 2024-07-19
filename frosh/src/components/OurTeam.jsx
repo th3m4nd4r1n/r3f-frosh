@@ -37,9 +37,9 @@ const OurTeam = () => {
                 </div>
             </div>
             <div className="faculty-team">
-                <Link to="/faculty" style={{"textDecoration":"none"}}><h1 className="faculty">FACULTY</h1></Link>
-                <Link to="/team" style={{"textDecoration" : "none"}}><h1 className="team">TEAM</h1></Link>
-                
+                <Link to="/faculty" ><h1 className="faculty">FACULTY</h1></Link>
+                <Link to="/team" ><h1 className="team">TEAM</h1></Link>
+
                 
             </div>
         </div>
