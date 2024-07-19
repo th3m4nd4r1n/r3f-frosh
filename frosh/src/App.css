@@ -4,3 +4,50 @@
   margin: 0;
   padding: 0;
 }
+
+/* Our Team  */
+
+.bg-ourTeam {
+  background: url('./assets/images/bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.frosh-alpha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+}
+
+.one {
+  font-size: 8rem;
+  font-family: Verdana, sans-serif;
+  font-weight: 600;
+}
+.two {
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: Verdana, sans-serif;
+}
+p {
+  width: 70%;
+  font-size: 1rem;
+  height: 43%;
+}
+.three {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  width: 20%;
+}
