@@ -1,0 +1,120 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.2.57",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Curve.001",
+      "rotation": [
+        -0.7125419974327087,
+        0,
+        0,
+        0.7016294598579407
+      ],
+      "scale": [
+        1.6445460319519043,
+        1.6445461511611938,
+        1.6445461511611938
+      ],
+      "translation": [
+        0,
+        0.8369446396827698,
+        0
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Curve.001",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 46130,
+      "max": [
+        0.4689350426197052,
+        0.010999997146427631,
+        -0.060849811881780624
+      ],
+      "min": [
+        0.1941242218017578,
+        -0.010999997146427631,
+        -0.2911352217197418
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 46130,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 46130,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 240828,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 553560,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 553560,
+      "byteOffset": 553560,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 369040,
+      "byteOffset": 1107120,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 481656,
+      "byteOffset": 1476160,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "compass_thakur_data.bin",
+      "byteLength": 1957816
+    }
+  ]
+}
