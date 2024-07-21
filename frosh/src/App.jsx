@@ -7,13 +7,26 @@ import './App.css'
 
 
 
-function Model() {
+
+function Model0() {
   const gltf = useLoader(GLTFLoader, '../public/scene.gltf');
   const ref = useRef();
   useFrame((state, delta) => {
+    var y = window.scrollY;
+    
     ref.current.rotation.y=Math.PI;
-    ref.current.rotation.z=state.clock.elapsedTime;
-    ref.current.position.z=-1;
+    
+    if (y == 0){
+      ref.current.position.z=-1;
+      ref.current.rotation.z=state.clock.elapsedTime;
+      
+    }
+    else{
+      ref.current.rotation.z=state.clock.elapsedTime;
+      ref.current.position.x=10*Math.sin(y*0.0005);
+      // ref.current.position.y=-y*0.0001;
+      
+    }
  
   });
 
@@ -23,17 +36,23 @@ const Compass = () =>{
   return(
     <Canvas>
     <ambientLight intensity={40} />
-    <Model />
+    <Model0 />
     <OrbitControls enablePan={false} enableZoom={false} enableDamping={true} enableRotate={true} enabled={true} />
     </Canvas>
   )
 }
 
+
+
+
 function App() {
   return (
     <div className='elements'>
 
+  
   <Compass />
+  
+<h2>hi</h2>
   
   
   
