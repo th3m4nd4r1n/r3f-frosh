@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../assets/frosh-white.png'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const Navbar = () => {

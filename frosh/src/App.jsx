@@ -16,7 +16,7 @@ import {
 
 import './App.css'
 import Navbar from './components/Navbar'
-import OurTeam from './components/ourTeam'
+import OurTeam from './components/OurTeam'
 import Map from './components/map'
 import Faculty from './components/faculty'
 import Team from './components/team'
@@ -42,7 +42,7 @@ function Model0() {
     }
     else{
       ref.current.rotation.z=state.clock.elapsedTime;
-      ref.current.position.x=10*Math.sin(y*0.0005);
+      ref.current.position.x=5*Math.sin(y*0.0005);
       // ref.current.position.y=-y*0.0001;
       
     }
@@ -53,11 +53,23 @@ function Model0() {
 }
 const Compass = () =>{
   return(
+    <>
     <Canvas>
     <ambientLight intensity={40} />
     <Model0 />
     <OrbitControls enablePan={false} enableZoom={false} enableDamping={true} enableRotate={true} enabled={true} />
     </Canvas>
+    <Navbar />
+      <Routes>
+        <Route exact path="/" element={<> 
+        <OurTeam />
+         </>} >
+         </Route>
+        <Route exact path="/faculty" element={<Faculty />}></Route>
+        <Route exact path="/team" element={<Team />}></Route>
+      </Routes>
+      <Map />  
+    </>
 )
 }
 
@@ -69,14 +81,9 @@ const Compass = () =>{
 function App() {
   return (
     <div className='elements'>  
-  <Compass />
-    <Navbar />
-      <Routes>
-        <Route exact path="/" element={<> <OurTeam/> </>} ></Route>
-        <Route exact path="/faculty" element={<Faculty/>}></Route>
-        <Route exact path="/team" element={<Team/>}></Route>
-      </Routes>
-      <Map />  
+  
+    <Compass />
+    
     </div>
   );
 }
