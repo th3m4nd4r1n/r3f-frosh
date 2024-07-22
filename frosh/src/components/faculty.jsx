@@ -5,7 +5,7 @@ const faculty = () => {
         <div className='bg-faculty font-faculty'>
 
                 <div class="container">
-                    <div class="section-faculty faculty">
+                    <div class="section-faculty ">
                         <h1>Faculty</h1>
                         <div class="faculty-members">
                             <div class="member faculty1">
@@ -14,7 +14,7 @@ const faculty = () => {
                             </div>
                             <div class="member faculty2">
                                 <div class="name">DR. AVINASH CHANDRA
-                                    _</div>
+                                    </div>
                             </div>
                             <div class="member faculty3">
                                 <div class="name">DR. DEVENDER KUMAR

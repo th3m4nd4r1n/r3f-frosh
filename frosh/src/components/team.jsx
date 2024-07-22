@@ -34,8 +34,6 @@ const team = () => {
                             <div class="member core5">
                                 <div class="name">Diya Wadhawan, TSLAS</div>
                             </div>
-                </div>
-                <div class="members">
                             <div class="member core6">
                                 <div class="name">Hritish Mahajan, CSBS</div>
                             </div>
@@ -51,8 +49,6 @@ const team = () => {
                             <div class="member core10">
                                 <div class="name">Navansh Krishna Goswami, ENC</div>
                             </div>
-                </div>
-                <div class="members">
                             <div class="member core11">
                                 <div class="name">Nipun Jain, COE</div>
                             </div>
@@ -68,8 +64,6 @@ const team = () => {
                             <div class="member core15">
                                 <div class="name">Shreya Gakhar, CSBS</div>
                             </div>
-                </div>
-                <div class="members members1">           
                             <div class="member core16">
                                 <div class="name">Soham Bhardwaj, BIOTECH</div>
                             </div>
