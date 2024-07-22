@@ -16,7 +16,7 @@ import {
 
 import './App.css'
 import Navbar from './components/Navbar'
-import OurTeam from './components/ourTeam'
+import OurTeam from './components/OurTeam'
 import Map from './components/map'
 import Faculty from './components/faculty'
 import Team from './components/team'
