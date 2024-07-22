@@ -1,0 +1,339 @@
+@media screen and (max-width: 1024px) {
+    .bg-faculty{
+        height: 180vh;
+    }
+}
+
+@media only screen and (max-width: 930px){
+    .bg-faculty{
+        height: 100vh;
+    }
+    .container {
+        padding: 50px;
+        text-align: center;
+    }
+    .section-faculty h1 {
+        font-size: 100px;
+        margin-bottom: 100px;
+        margin-top: 60px;
+    }
+    .faculty-members {
+        display: flex;
+        gap: 65px;
+        justify-content: center;
+        margin-bottom: 140px;
+    }
+
+
+
+}
+
+@media only screen and (max-width : 830px){
+
+    .bg-faculty {
+        height: 101vh;
+    }
+
+    .container{
+        padding: 0px!important;
+    }
+
+    .section-faculty {
+        margin-bottom: 0px;
+        /* font-size: 40px;
+        font-family: a, Verdana, sans-serif;
+        cursor: pointer; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .faculty-members {
+        gap: 43px;
+        justify-content: center;
+        margin-bottom: 70px;
+        /* flex-direction: column; */
+        align-items: center;
+    }
+    .container{
+        height: 100%;
+    }
+
+    .member{
+        width: 175px;
+        height: 245px;
+    }
+
+    .member > .name{
+        font-size: 13px;
+    }
+    .bg-faculty {
+        height: 101vh;
+    }
+    .section-faculty h1 {
+        margin-bottom: 60px;
+        font-size: 115px;
+    }
+}
+
+@media only screen and (max-width : 768px){
+
+    .bg-faculty {
+        height: 101vh;
+    }
+
+    .container{
+        padding: 0px!important;
+    }
+
+    .section-faculty {
+        margin-bottom: 0px;
+        /* font-size: 40px;
+        font-family: a, Verdana, sans-serif;
+        cursor: pointer; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .section-faculty h1 {
+        margin-top: 65px;
+        margin-bottom: 60px;
+        font-size: 70px;
+    }
+    .faculty-members {
+        gap: 43px;
+        justify-content: center;
+        margin-bottom: 70px;
+        /* flex-direction: column; */
+        align-items: center;
+    }
+    .container{
+        height: 100%;
+    }
+
+    .member{
+        width: 175px;
+        height: 245px;
+    }
+
+    .member > .name{
+        font-size: 13px;
+    }
+}
+
+
+@media only screen and (max-width:545px) {
+    .bg-faculty {
+        height: 108vh;
+    }
+    .member {
+        width: 112px;
+        height: 167px;
+    }
+    .member > .name {
+        font-size: 9px;
+    }
+}
+
+
+
+/* Our Team  */
+
+@media only screen and (max-width: 450px){
+    .navbar{
+        width: 91%;
+    }
+
+    .bg-ourTeam{
+        height: 207vh;
+    }
+    .frosh-alpha {
+        height: 65%;
+        flex-direction: column;
+    }
+    .three{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 20%;
+    }
+    .one {
+        font-size: 8.5rem;
+        width: 25%;
+    }
+    .two {
+        justify-content: flex-end;
+        align-items: flex-start;
+        height: 100%;
+        width: 50%;
+    }
+    p {
+        width: 100%;
+        height: 60%;
+    }
+    .faculty-team {
+        flex-direction: column;
+        width: 85%;
+        height: 35%;
+        justify-content: space-evenly;
+    }
+    .desc-head{
+        margin-bottom: 7px;
+    }
+
+    .map-element {
+        height: 70%;
+        padding-top: 48vh;
+    }
+
+    .card{
+        scale: 1.9;
+        /* rotate: 90deg; */
+    }
+    .fold::before {
+        display: none;
+    }
+    .map {
+        height: 100vh;
+    }
+    .map-element{
+        height: 50%;
+        padding-top: 40vh;
+    }
+    .map-zoomed {
+        padding-top: 60vh;
+    }
+    .closeMap {
+        bottom: 9%;
+        left: 34%;
+    }
+    .closeMap img {
+        height: 70%;
+        width: 70%;
+    }
+    .navigate> h1 {
+        font-size: 2rem;
+        font-family: bigersideExpanded;
+    }
+
+    /* faculty  */
+
+    .bg-faculty {
+        height: 260vh;
+    }
+
+    .container{
+        padding: 0px!important;
+    }
+
+    .section-faculty {
+        margin-bottom: 0px;
+        /* font-size: 40px;
+        font-family: a, Verdana, sans-serif;
+        cursor: pointer; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .section-faculty h1 {
+        margin-top: 65px;
+        margin-bottom: 60px;
+        font-size: 70px;
+    }
+    .faculty-members {
+        gap: 70px;
+        justify-content: center;
+        margin-bottom: 70px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container{
+        height: 100%;
+    }
+    
+
+}
+
+@media only screen and (max-width: 420px) {
+    .bg-faculty {
+        height: 270vh;
+    }
+    .member{
+        width: 175px;
+        height: 245px;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .one {
+        font-size: 7rem;
+    }
+    .two {
+        justify-content: flex-end;
+        height: 100%;
+        width: 60%;
+        font-size: 1rem;
+    }
+    .card{
+        scale: 2;
+    }
+    .closeMap{
+        bottom: 12%;
+        left: 36%;
+    
+    }
+    .bg-faculty {
+        height: 316vh;
+    }
+
+}
+
+@media only screen and (max-width: 380px){
+    .member >.name{
+        font-size: 10px;
+    }
+    .bg-faculty {
+        height: 381vh;
+    }
+    .member {
+        width: 207px;
+        height: 270px;
+    }
+}
+
+@media only screen and (max-width: 365px){
+    .bg-faculty {
+        height: 348vh;
+    }
+}
+@media only screen and (max-width: 350px){
+    .bg-faculty {
+        height: 291vh;
+    }
+}
+
+
+@media only screen and (max-width: 325px){
+    .one {
+        font-size: 6rem;
+    }
+    p{
+        font-size: 0.8rem;
+    }
+    
+    .closeMap{
+        bottom: 17%;
+        left: 37%;
+    }
+
+    .closeMap img{
+        height: 60%;
+        width: 60%;
+    }
+}

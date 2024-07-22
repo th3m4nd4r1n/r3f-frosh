@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Directions - Enter Addresses or Click on Map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_x_mhwhDwiGKCIwONa3CHz_618xZct0&libraries=places&callback=initMap" async defer></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #directions-form {
+            background-color: #f2f2f2;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            border-radius: 3px;
+        }
+        #directions-form input, #directions-form select {
+            margin: 5px;
+            padding: 5px;
+        }
+        #directions-form button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var map;
+        var directionsService;
+        var directionsDisplay;
+        var originAutocomplete;
+        var destinationAutocomplete;
+
+        var originMarker;
+        var destinationMarker;
+
+        var mode = 'manual'; // Initial mode: manual input
+
+        function initMap() {
+            var center = {lat: 30.35649823789197, lng: 76.36543075700676};
+            var zoom = 17;
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: zoom,
+                center: center
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(map);
+
+            // Initialize autocomplete for origin and destination inputs
+            var originInput = document.getElementById('origin');
+            var destinationInput = document.getElementById('destination');
+            originAutocomplete = new google.maps.places.Autocomplete(originInput);
+            destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+
+            // Listen for click event on the map if in select marker mode
+            map.addListener('click', function(event) {
+                if (mode == 'select') {
+                    placeMarker(event.latLng);
+                }
+            });
+
+            // Add a marker at the specified coordinates
+            var initialMarker = new google.maps.Marker({
+                position: {lat: 30.35432779913073, lng: 76.36242501555904},
+                map: map,
+                title: 'Initial Marker'
+            });
+        }
+
+        function toggleMode() {
+            var modeButton = document.getElementById('mode-button');
+            if (mode == 'manual') {
+                mode = 'select';
+                modeButton.textContent = 'Switch to Manual Input';
+                modeButton.classList.remove('btn-primary');
+                modeButton.classList.add('btn-secondary');
+                clearMarkers();
+                directionsDisplay.setMap(map); // Hide directions while in select mode
+            } else {
+                mode = 'manual';
+                modeButton.textContent = 'Switch to Select Marker';
+                modeButton.classList.remove('btn-secondary');
+                modeButton.classList.add('btn-primary');
+                directionsDisplay.setMap(map); // Show directions when switching back to manual mode
+            }
+        }
+
+        function placeMarker(latLng) {
+            if (!originMarker) {
+                originMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Origin',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                originMarker.addListener('dragend', function() {
+                    if (destinationMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update origin input value
+                document.getElementById('origin').value = latLng.lat() + ', ' + latLng.lng();
+            } else if (!destinationMarker) {
+                destinationMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Destination',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                destinationMarker.addListener('dragend', function() {
+                    if (originMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update destination input value
+                document.getElementById('destination').value = latLng.lat() + ', ' + latLng.lng();
+
+                // Calculate and display route once both markers are set
+                calculateAndDisplayRoute();
+            } else {
+                // Clear previous markers and reset
+                clearMarkers();
+
+                // Place new marker for origin
+                originMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Origin',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                originMarker.addListener('dragend', function() {
+                    if (destinationMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update origin input value
+                document.getElementById('origin').value = latLng.lat() + ', ' + latLng.lng();
+            }
+        }
+
+        function calculateAndDisplayRoute() {
+            var origin, destination;
+
+            if (originMarker && destinationMarker) {
+                origin = originMarker.getPosition();
+                destination = destinationMarker.getPosition();
+            } else {
+                origin = document.getElementById('origin').value;
+                destination = document.getElementById('destination').value;
+            }
+
+            var travelMode = document.getElementById('travel-mode').value;
+
+            var request = {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode[travelMode]
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                    speakDirections(result); // Speak directions once calculated
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+        function clearMarkers() {
+            if (originMarker) {
+                originMarker.setMap(null);
+                originMarker = null;
+            }
+            if (destinationMarker) {
+                destinationMarker.setMap(null);
+                destinationMarker = null;
+            }
+            document.getElementById('origin').value = '';
+            document.getElementById('destination').value = '';
+            directionsDisplay.setDirections({routes: []}); // Clear directions
+        }
+
+        function speakDirections(result) {
+            var directionsText = '';
+
+            // Process each leg of the route
+            result.routes[0].legs.forEach(function(leg) {
+                leg.steps.forEach(function(step) {
+                    directionsText += step.instructions + ', ';
+                });
+            });
+
+            // Speak directions using SpeechSynthesis
+            var speech = new SpeechSynthesisUtterance(directionsText);
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="directions-form">
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" placeholder="Enter origin address">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" placeholder="Enter destination address">
+        <label for="travel-mode">Travel Mode:</label>
+        <select id="travel-mode">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+        </select>
+        <button onclick="calculateAndDisplayRoute()">Get Directions</button>
+        <button onclick="clearMarkers()">Clear Markers</button>
+        <button id="mode-button" class="btn-primary" onclick="toggleMode()">Switch to Select Marker</button>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Directions - Enter Addresses or Click on Map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_x_mhwhDwiGKCIwONa3CHz_618xZct0&callback=initMap" async defer></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        #directions-form {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #directions-form input {
+            margin: 5px;
+            padding: 5px;
+        }
+        #directions-form button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var map;
+        var directionsService;
+        var directionsDisplay;
+
+        var originMarker;
+        var destinationMarker;
+
+        var mode = 'manual'; // Initial mode: manual input
+
+        function initMap() {
+            var center = {lat: 30.35649823789197, lng: 76.36543075700676};
+            var zoom = 17;
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: zoom,
+                center: center
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(map);
+
+            // Listen for click event on the map if in select marker mode
+            map.addListener('click', function(event) {
+                if (mode === 'select') {
+                    placeMarker(event.latLng);
+                }
+            });
+        }
+
+        function toggleMode() {
+            var modeButton = document.getElementById('mode-button');
+            if (mode == 'manual') {
+                mode = 'select';
+                modeButton.textContent = 'Switch to Manual Input';
+                modeButton.classList.remove('btn-primary');
+                modeButton.classList.add('btn-secondary');
+                clearMarkers();
+                directionsDisplay.setMap(map); // Hide directions while in select mode
+            } else {
+                mode = 'manual';
+                modeButton.textContent = 'Switch to Select Marker';
+                modeButton.classList.remove('btn-secondary');
+                modeButton.classList.add('btn-primary');
+                directionsDisplay.setMap(map); // Show directions when switching back to manual mode
+            }
+        }
+
+        function placeMarker(latLng) {
+            if (!originMarker) {
+                originMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Origin',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                originMarker.addListener('dragend', function() {
+                    if (destinationMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update origin input value
+                document.getElementById('origin').value = latLng.lat() + ', ' + latLng.lng();
+            } else if (!destinationMarker) {
+                destinationMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Destination',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                destinationMarker.addListener('dragend', function() {
+                    if (originMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update destination input value
+                document.getElementById('destination').value = latLng.lat() + ', ' + latLng.lng();
+
+                // Calculate and display route once both markers are set
+                calculateAndDisplayRoute();
+            } else {
+                // Clear previous markers and reset
+                clearMarkers();
+
+                // Place new marker for origin
+                originMarker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Origin',
+                    draggable: true
+                });
+
+                // Optional: Add dragend listener to update directions if marker is dragged
+                originMarker.addListener('dragend', function() {
+                    if (destinationMarker) {
+                        calculateAndDisplayRoute();
+                    }
+                });
+
+                // Update origin input value
+                document.getElementById('origin').value = latLng.lat() + ', ' + latLng.lng();
+            }
+        }
+
+        function calculateAndDisplayRoute() {
+            var origin, destination;
+
+            if (originMarker && destinationMarker) {
+                origin = originMarker.getPosition();
+                destination = destinationMarker.getPosition();
+            } else {
+                origin = document.getElementById('origin').value;
+                destination = document.getElementById('destination').value;
+            }
+
+            var request = {
+                origin: origin,
+                destination: destination,
+                travelMode: 'DRIVING'
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                    speakDirections(result); // Speak directions once calculated
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+        function clearMarkers() {
+            if (originMarker) {
+                originMarker.setMap(null);
+                originMarker = null;
+            }
+            if (destinationMarker) {
+                destinationMarker.setMap(null);
+                destinationMarker = null;
+            }
+            document.getElementById('origin').value = '';
+            document.getElementById('destination').value = '';
+            directionsDisplay.setDirections({routes: []}); // Clear directions
+        }
+
+        function speakDirections(result) {
+            var directionsText = '';
+
+            // Process each leg of the route
+            result.routes[0].legs.forEach(function(leg) {
+                leg.steps.forEach(function(step) {
+                    directionsText += step.instructions + ', ';
+                });
+            });
+
+            // Speak directions using SpeechSynthesis
+            var speech = new SpeechSynthesisUtterance(directionsText);
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="directions-form">
+        <label for="origin">Origin:</label>
+        <input type="text" id="origin" placeholder="Enter origin address">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" placeholder="Enter destination address">
+        <button onclick="calculateAndDisplayRoute()">Get Directions</button>
+        <button onclick="clearMarkers()">Clear Markers</button>
+        <button id="mode-button" class="btn-primary" onclick="toggleMode()">Switch to Select Marker</button>
+    </div>
+</body>
+</html> -->
