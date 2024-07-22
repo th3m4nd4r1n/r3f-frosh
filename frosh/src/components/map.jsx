@@ -1,21 +1,37 @@
 import React , { useState, useEffect } from "react";
 import closeBtn from '../assets/delete.png' 
+import { Link } from "react-router-dom";
 
 const Map = ()=>{
     const [zoom, setZoom] = useState(0);
     const [folds, setFolds] = useState([]);
     const [closeMapVisible, setCloseMapVisible] = useState(false);
+    const [mapRotate, setMapRotate] = useState(false)
+    const[width , setWidth] = useState(window.innerWidth)
+    // const [mapHeight , setMapHeight] = useState
 
     useEffect(() => {
         const foldsElements = document.getElementsByClassName("fold");
         setFolds(Array.from(foldsElements));
+
+
     }, []);
+
+    
 
     const handleCardClick = () => {
         setZoom(1);
         folds.forEach((fold, index) => {
         if (index % 2 === 0) {
-            document.getElementById("card").style.transform = "scale(3)";
+            if(width<=450){
+                document.getElementsByClassName("map")[0].style.height = "123vh"
+                document.getElementById("card").style.transform = "scale(3)";
+                document.getElementById("card").style.rotate = "90deg";
+            }
+            else{
+
+                document.getElementById("card").style.transform = "scale(3)";
+            }
             fold.style.transform = `skewY(0deg)`;
             fold.style.filter = "brightness(1)";
         } else {
@@ -60,8 +76,13 @@ const Map = ()=>{
     };
 
     const handleCloseMapClick = () => {
+        setCloseMapVisible(false);
         folds.forEach((fold, index) => {
         if (index % 2 === 0) {
+            if(width<=450){
+                document.getElementsByClassName("map")[0].style.height = "100vh"
+                document.getElementById("card").style.rotate = "";
+            }
             document.getElementById("card").style.transform = "scale(1)";
             fold.style.transform = `skewY(-45deg)`;
             fold.style.filter = "brightness(1.25)";
@@ -73,21 +94,32 @@ const Map = ()=>{
         setTimeout(() => {
         setZoom(0);
         }, 500);
-        setCloseMapVisible(false);
     };
+
+    const navigateHover=()=>{
+
+    }
 
     return(
         <div className="map">
-            <div class="card" id="card" onClick={handleCardClick} onMouseEnter={handleCardMouseEnter} onMouseLeave={handleCardMouseLeave} >
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
-                <div class="fold"></div>
+            <div className={`map-element ${zoom===1?"map-zoomed" : ""}`} >
+                <div class="card" id="card" onClick={handleCardClick} onMouseEnter={handleCardMouseEnter} onMouseLeave={handleCardMouseLeave} >
+                    <div class="fold"></div>
+                    <div class="fold"></div>
+                    <div class="fold"></div>
+                    <div class="fold"></div>
+                </div>
             </div>
             <div class="closeMap" id="closeMap" style={closeMapVisible?{"display":"block"} : {"display":"none"}} onClick={handleCloseMapClick}>
                 <img src={closeBtn} alt=""/>
             </div>
-        </div>
+            <div className={`navigate ${closeMapVisible || zoom===1?"navigate-no-display" : ""}`}>
+                <h1>Campus Map</h1>
+                <Link to="/map"><h2>Click Here to Navigate!</h2></Link>
+            </div>
+
+        </div>        
+
     )
 }
 
