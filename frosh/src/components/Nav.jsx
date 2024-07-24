@@ -10,25 +10,26 @@ const Nav = ()=>{
 
     const toggleNavOpen = ()=>{
         if(navMobile){
-            setNavMobile(true)
+            setNavMobile(false)
         }
         else{
-            setNavMobile(false)
+            setNavMobile(true)
         }
     }
 
 
     return(
-        <nav class={`navbar background ${navMobile ? "h-nav-resp" : ""} `}>
-            <div class="logo"><img src={logo} alt="logo" /></div>
-            <ul class={`nav-list another ${navMobile? "v-class-resp" : ""}`}>
+        <nav class={`navbar background ${navMobile ? "" : "h-nav-resp"} `}>
+
+            <div class="logo"><Link to="/"><img src={logo} alt="logo" /></Link></div>
+            <ul class={`nav-list another ${navMobile? "" : "v-class-resp"}`}>
                 <li><Link to="/">HOME</Link></li>
                 <li><HashLink to="#event" smooth >EVENT</HashLink></li>
                 <li><HashLink to="#map" smooth>MAP</HashLink></li>
                 <li><HashLink to="#about" smooth>ABOUT</HashLink></li>
                 <li><HashLink to="#sponsors" smooth >SPONSORS</HashLink></li>
             </ul>
-            <div class={`rightNav ${navMobile? "v-class-resp" : ""} `}>
+            <div class={`rightNav ${navMobile? "" : "v-class-resp"} `}>
                 <Link to="/login">GET TICKETS</Link>
             </div>
   

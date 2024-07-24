@@ -3,7 +3,9 @@
   padding: 0;
 }
 
-
+a{
+  text-decoration: none;
+}
 
 @font-face {
   font-family: bebaskai;
@@ -13,6 +15,21 @@
   font-family: bigersideExpanded;
   src: url(./assets/BigersideExpanded-7O9Z4.otf);
 }
+
+@keyframes glow { 
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #16456e, 0 0 40px #0f6c9c, 0 0 50px #02081a, 0 0 60px #00d7e6, 0 0 70px #147071;
+  }
+  100% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #4dadff, 0 0 40px #514dff, 0 0 50px #4dafff, 0 0 60px #4dcbff, 0 0 70px #4de6ff, 0 0 80px #4d94ff;
+  }
+}
+.glow{
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
 
 .bg-body{
   background: url(./assets/images/bg.png);
@@ -25,154 +42,6 @@
   font-family: rasputin;
   src: url(./assets/Rasputin.otf);
 }
-
-/* .bg-nav {
-  height: 100%;
-  width: 100%;
-}
-.nav {
-  scroll-behavior: smooth;
-}
-
-.font-nav {
-  font-family: rasputin;
-}
-
-.buttons-nav {
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  height: 70px;
-  width: 100%;
-  background: transparent;
-  backdrop-filter: blur(9px);
-  background-size: cover ;
-  background-repeat: no-repeat;
-  color: white;
-  padding: 0 20px;
-  z-index: 2;
-}
-
-.navbar img {
-  position: relative;
-  height: 100%;
-  width: 10%;
-  margin-top: 10px;
-}
-
-.buttons-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  font-family: rasputin;
-}
-
-a{
-  text-decoration: none;
-}
-
-.buttons-nav > a {
-  color: white;
-  margin-right: 20px;
-}
-
-.buttons-nav > a.active {
-  color: yellow;
-}
-
-.buttons-nav > a:last-child {
-  margin-right: 0;
-}
-
-.btn-nav {
-  background-color: transparent;
-  border: none;
-  width: 9%;
-}
-
-.btn-nav > a {
-  text-decoration: none;
-  color: white;
-  margin-right: 50px;
-}
-
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-}
-
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  background-color: white;
-}
-
-@media only screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .buttons-nav,
-  .desktop-tix {
-    display: none;
-  }
-
-  .navbar img {
-    width: auto;
-    height: 60px;
-  }
-
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 70px;
-    gap: 0;
-    flex-direction: column;
-    background-color: rgb(0, 0, 0);
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-  }
-
-  .nav-menu.active {
-    left: 0;
-  }
-
-  .nav-menu.active .buttons-nav {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .nav-menu.active .buttons-nav > a {
-    margin: 10px 0;
-  }
-
-  .mobile-tix {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-
-@media only screen and (min-width: 769px) {
-  .mobile-tix {
-    display: none;
-  }
-} */
 
 
 .logo {
@@ -194,6 +63,7 @@ a{
   top: 0;
   background: transparent;
   backdrop-filter: blur(9px);
+  z-index: 2;
 }
 
 .nav-list {
@@ -214,10 +84,6 @@ a{
   color: white;
   font-size: 17px;
   font-family: 'rasputin';
-}
-.nav-list li a:hover {
-  text-decoration: none;
-  color: brown;
 }
 
 .rightNav {
@@ -259,7 +125,7 @@ a{
 /* Home - Landing  */
 
 .home{
-  height: 100vh;
+  height: 65vh;
   width: 100vw;
   /* background: url(./assets/images/bg.png); */
   background-repeat: no-repeat;
@@ -272,7 +138,7 @@ a{
 
 .frosh-main-img{
   background: url(/src/assets/frosh-white.png);
-  height: 50%;
+  height: 75%;
   width: 60%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -347,6 +213,14 @@ p {
   font-family: a, Verdana, sans-serif;
   cursor: pointer;
 }
+
+ a:hover{
+  
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
 .team {
   font-size: 40px;
   font-family: a, Verdana, sans-serif;
@@ -366,12 +240,16 @@ p {
   color: white;
 }
 
-.faculty ::before {
-  content: " ";
-  background: url(./assets/images/triangle.png);
-  height: 25vh;
-  width: 25vw;
-  z-index: 1;
+
+.bg-triangle{
+  background: url(/src/assets/images/triangle.png);
+  background-size: contain;
+  height: 20vh;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10vw
 }
 
 /* Map  */

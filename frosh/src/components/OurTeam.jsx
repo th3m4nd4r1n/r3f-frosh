@@ -62,13 +62,13 @@ const OurTeam = () => {
                 </div>
             </div>
             <div className="faculty-team">
-                <div className="faculty">
+                <div className="faculty bg-triangle">
 
-                    <Link to="/faculty" ><h1 className="faculty">FACULTY</h1></Link>
+                    <Link to="/faculty" ><h1 className="faculty ">FACULTY</h1></Link>
                 </div>
-                <div className="team">
+                <div className="team bg-triangle">
 
-                    <Link to="/team" ><h1 className="team">TEAM</h1></Link>
+                    <Link to="/team" ><h1 className="team ">TEAM</h1></Link>
                 </div>
 
 

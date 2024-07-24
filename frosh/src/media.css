@@ -286,13 +286,26 @@
         
     }
 
-    /* .navbar{
-        width: 91%;
-    } */
+    .navbar {
+        align-items: flex-start;
+    }
 
-    /* .navbar img {
-        width: 32%;
-    } */
+    .logo {
+        width: 25%;
+        padding: 27px 18px;
+    }
+
+    .nav-list{
+        width: 100%;
+    }
+
+    .rightNav {
+        /* background-color: wheat; */
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+    }
 
     .bg-ourTeam{
         height: 207vh;
@@ -325,11 +338,16 @@
     .faculty-team {
         flex-direction: column;
         width: 85%;
-        height: 35%;
+        height: 31%;
         justify-content: space-evenly;
     }
     .desc-head{
         margin-bottom: 7px;
+    }
+
+    .bg-triangle {
+        height: 11vh;
+        width: 25vw;
     }
 
     .map-element {
@@ -350,7 +368,7 @@
         display: none;
     }
     .map {
-        height: 80vh;
+        height: 60vh;
     }
 
 
@@ -417,6 +435,10 @@
     }
     .container{
         height: 100%;
+    }
+    
+    .section-team > h1 {
+        font-size: 60px;
     }
     
 
@@ -494,7 +516,7 @@
         height: 348vh;
     }
     .closeMap {
-        bottom: -38%;
+        bottom: -35%;
     }
 }
 @media only screen and (max-width: 350px){
