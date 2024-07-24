@@ -5,7 +5,7 @@ const team = () => {
         <div className='bg-team'>
             <div id="team-main">
                 <div class="container">
-                    <div class="section osc">
+                    <div class="section-team osc">
                         <h1>OSC</h1>
                         <div class="members">
                             <div class="member osc1">
@@ -16,7 +16,7 @@ const team = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="section core">
+                    <div class="section-team core">
                         <h1>CORE</h1>
                         <div class="members">
                             <div class="member core1">
@@ -75,7 +75,7 @@ const team = () => {
                             </div>
                         </div>
                     </div>
-                    <div class="section mentors">
+                    <div class="section-team mentors">
                         <h1>MENTORS</h1>
                         <div class="members">
                             <div class="member mentor1">

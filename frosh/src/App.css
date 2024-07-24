@@ -3,6 +3,8 @@
   padding: 0;
 }
 
+
+
 @font-face {
   font-family: bebaskai;
   src: url(./assets/BebasKai.otf);
@@ -12,14 +14,19 @@
   src: url(./assets/BigersideExpanded-7O9Z4.otf);
 }
 
+.bg-body{
+  background: url(./assets/images/bg.png);
+  background-size:cover ;
+}
+
 /* Navbar  */
 
 @font-face {
   font-family: rasputin;
-  src: url(./Rasputin.otf);
+  src: url(./assets/Rasputin.otf);
 }
 
-.bg-nav {
+/* .bg-nav {
   height: 100%;
   width: 100%;
 }
@@ -37,9 +44,6 @@
   align-items: center;
   justify-content: space-between;
 }
-.buttons-nav > a {
-  margin: 10vw 0;
-}
 
 .navbar {
   display: flex;
@@ -48,10 +52,13 @@
   position: fixed;
   height: 70px;
   width: 100%;
-  background-color: rgb(0, 0, 0);
+  background: transparent;
+  backdrop-filter: blur(9px);
+  background-size: cover ;
+  background-repeat: no-repeat;
   color: white;
   padding: 0 20px;
-  z-index: 1000;
+  z-index: 2;
 }
 
 .navbar img {
@@ -65,11 +72,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 100%;
+  font-family: rasputin;
+}
+
+a{
+  text-decoration: none;
 }
 
 .buttons-nav > a {
-  text-decoration: none;
   color: white;
   margin-right: 20px;
 }
@@ -91,7 +102,7 @@
 .btn-nav > a {
   text-decoration: none;
   color: white;
-  margin-right: 2%;
+  margin-right: 50px;
 }
 
 .menu-toggle {
@@ -161,12 +172,122 @@
   .mobile-tix {
     display: none;
   }
+} */
+
+
+.logo {
+  width: 18%;
+  display: flex;
+  justify-content: center;
 }
+
+.logo img {
+  width: 100%;
+
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background: transparent;
+  backdrop-filter: blur(9px);
+}
+
+.nav-list {
+  width: 90%;
+  /* background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-list li {
+  list-style: none;
+  padding: 34px 51px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  font-family: 'rasputin';
+}
+.nav-list li a:hover {
+  text-decoration: none;
+  color: brown;
+}
+
+.rightNav {
+  /* background-color: wheat; */
+  width: 10%;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.rightNav a{
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  font-family: 'rasputin';
+}
+
+.burger {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  right: 5%;
+  top: 20%;
+}
+
+.line {
+  width: 33px;
+  background-color: white;
+  height: 4px;
+  margin: 5px 5px;
+}
+
+.burger-top {
+  top: 5%;
+}
+
+/* Home - Landing  */
+
+.home{
+  height: 100vh;
+  width: 100vw;
+  /* background: url(./assets/images/bg.png); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.frosh-main-img{
+  background: url(/src/assets/frosh-white.png);
+  height: 50%;
+  width: 60%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+
+.frosh-tag{
+  font-family: rasputin;
+}
+
 
 /* Our Team  */
 
 .bg-ourTeam {
-  background: url("./assets/images/bg.png");
+  /* background: url("./assets/images/bg.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
@@ -260,8 +381,29 @@ p {
 }
 
 
+/* .map {
+  background: url(./assets/images/bg-2.png);
+  background-blend-mode: lighten;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  gap: 20px;
+}
+
+
+.map-element{
+  height: 70%;
+  transition: all 400ms ease-in-out;
+}
+
+.map-zoomed{
+  padding-top: 0vh;
+} */
+
 .map {
-  background: url(/src/assets/images/bg.png);
+  /* background: url(/src/assets/images/bg.png); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -280,13 +422,14 @@ p {
 .map-zoomed{
   padding-top: 39vh;
 }
+
 .closeMap {
   display: none;
   height: 60px;
   width: 60px;
   position: relative;
-  bottom: 78%;
-  left: 34%;
+  bottom: 80%;
+  left: 35%;
   cursor: pointer;
   transition: all 1s ease-in;
 }
@@ -426,46 +569,12 @@ p {
 }
 
 
-/* Navigate  */
-
-#map{
-  height: 100%;
-  width: 100%;
-  position: fixed!important;
-}
-
-#directions-form {
-  display: flex;
-  width: 66%;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: #f2f2f2;
-  padding: 10px;
-  position: absolute;
-  top: 13%;
-  left: 1%;
-  z-index: 5;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-}
-.navigation-input{
-  margin: 5px;
-  padding: 5px;
-  width: 40%;
-  margin-left: 10px;
-}
-#directions-form > button {
-  margin: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
 /* faculty  */
 
 .bg-faculty {
   width: 100%;
   height: 185vh;
-  background-image: url("./assets/images/bg.png");
+  /* background-image: url("./assets/images/bg.png"); */
   background-size: cover;
 }
 @font-face {
@@ -480,7 +589,7 @@ p {
   font-weight: bolder;
 }
 .container {
-  padding: 50px;
+  padding-top: 42px;
   text-align: center;
 }
 
@@ -579,8 +688,8 @@ p {
   height: 100%;
   background-size: cover;
   /* background-repeat:repeat-y; */
-  background-image: url("./assets/images/bg.png");
   width: 100%;
+  overflow: hidden;
 }
 
 /* Hide scrollbar for all elements */
@@ -600,27 +709,24 @@ p {
   color: white;
 }
 
-.container {
-  padding: 100px;
-  text-align: center;
-}
 h1 {
   color: white;
 }
-.section {
-  margin-bottom: 50px;
+.section-team {
+  padding: 50px 0px;
 }
 
-.section h1 {
+.section-team > h1 {
   font-size: 100px;
-  margin-bottom: 20px;
+  margin: 27px 0px;
 }
 .members {
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 50px;
-  margin: 100px;
+  /* margin: 100px; */
 }
 .members1 {
   display: flex;
@@ -1051,34 +1157,6 @@ body {
   background-image: url("./assets/images/path/to/mentor75.jpg");
 }
 
-@media screen and (max-width: 1200px) {
-  .core .members,
-  .mentors .members {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .core .members,
-  .mentors .members {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .core .members,
-  .mentors .members {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .core .members,
-  .mentors .members {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 /* login  */
 
 .login {
@@ -1091,7 +1169,7 @@ body {
 .login-main {
   width: 100vw;
   height: 100vh;
-  background: url(./assets/images/bg.png);
+  /* background: url(./assets/images/bg.png); */
   background-position: center;
   background-size: cover;
 }
@@ -1201,4 +1279,80 @@ h4 {
   transform: translate(-50%, -50%);
 }
 
+.bg-sponsors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 125vh;
+  width: 100vw;
+  /* background: url(/src/assets/images/bg.png); */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sponsors {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+.sponsors-head{
+  width: 100%;
+  text-align: center;
+}
+
+
+
+.sponsors-head > h1:nth-child(1):before {
+  content: ">>";
+  position: absolute;
+  color: #23FFFF;
+  left: 36%;
+}
+.sponsors-head > h1:nth-child(2):before{
+  content: ">";
+  position: relative;
+  left: -5%;
+  color: #23FFFF;
+}
+.sponsors-head > h1:nth-child(1):after{
+  content: "<<";
+  position: absp;
+  position: absolute;
+  color: #23FFFF;
+  right: 36%;
+}
+.sponsors-head > h1:nth-child(2):after{
+  content: "<";
+  position: relative;
+  right: -5%;
+  color: #23FFFF;
+  /* bottom: 5px; */
+}
+
+.sponsors-head > h1{
+  font-size: 2rem;
+  font-family: bigersideExpanded;
+}
+
+
+.sponsors-logo{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 60%;
+  height: 70%;
+}
+
+
+.sponsor > img{
+  border-radius: 100px;
+  object-fit: cover;
+  height: 16vh;
+  width: 11vw;
+}
 

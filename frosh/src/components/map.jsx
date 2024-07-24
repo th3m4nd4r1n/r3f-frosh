@@ -23,10 +23,14 @@ const Map = ()=>{
         setZoom(1);
         folds.forEach((fold, index) => {
         if (index % 2 === 0) {
-            if(width<=450){
-                document.getElementsByClassName("map")[0].style.height = "123vh"
-                document.getElementById("card").style.transform = "scale(3)";
-                document.getElementById("card").style.rotate = "90deg";
+            if(width>395 && width<=450){
+                document.getElementsByClassName("map")[0].style.height = "80vh"
+                document.getElementById("card").style.transform = "scale(4.4) rotate(90deg)";
+                // document.getElementById("card").style.rotate = "90deg";
+            }
+            else if(width<395){
+                
+                document.getElementById("card").style.transform = "scale(3) rotate(90deg)";
             }
             else{
 
@@ -80,10 +84,10 @@ const Map = ()=>{
         folds.forEach((fold, index) => {
         if (index % 2 === 0) {
             if(width<=450){
-                document.getElementsByClassName("map")[0].style.height = "100vh"
+                document.getElementsByClassName("map")[0].style.height = "60vh"
                 document.getElementById("card").style.rotate = "";
             }
-            document.getElementById("card").style.transform = "scale(1)";
+            document.getElementById("card").style.transform = "scale(1.4)";
             fold.style.transform = `skewY(-45deg)`;
             fold.style.filter = "brightness(1.25)";
         } else {
@@ -101,7 +105,7 @@ const Map = ()=>{
     }
 
     return(
-        <div className="map">
+        <div className="map" id="map">
             <div className={`map-element ${zoom===1?"map-zoomed" : ""}`} >
                 <div class="card" id="card" onClick={handleCardClick} onMouseEnter={handleCardMouseEnter} onMouseLeave={handleCardMouseLeave} >
                     <div class="fold"></div>
